@@ -4,6 +4,7 @@
 
 body {
     margin: 0;
+    padding-bottom: 180px;
 }
 
 .nav {
@@ -37,18 +38,18 @@ body {
     height: 100%;
     display: flex;
     align-items: center;
-    padding: .25rem;
+    padding: 0.25rem;
 }
 
 .main-footer{
-    position: relative;
-    min-height: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     color: black;
     font-weight: 300;
-    background-color: #D9D9D9;
-    padding-top: 3em;
-    position: relative;
-    width: 100%;
+    background-color: #ececec;
+    padding-top: 1em;    
     white-space: nowrap;
 }
 

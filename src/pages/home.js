@@ -22,19 +22,19 @@ import image16 from './../images/y8.jpg'
 
 const imgData = {
   images: [
-    image5,
-    image6,
-    image7,
-    image8,
-    image9,
-    image10,
-    image11,
-    image12,
-    image13,
-    image14,
-    image15,
-    image16
-  ]
+    { src: image5, text: "<Abies koreana>" },
+    { src: image6, text: "<blue flower garden>" },
+    { src: image7, text: "<Sunflower>" },
+    { src: image8, text: "<Tiger>" },
+    { src: image9, text: "<ballerina>" },
+    { src: image10, text: "Tree 3" },
+    { src: image11, text: "<Girl>" },
+    { src: image12, text: "Tree 2" },
+    { src: image13, text: "Tree 3" },
+    { src: image14, text: "Tree 1" },
+    { src: image15, text: "Tree 2" },
+    { src: image16, text: "Tree 3" }
+  ],
 };
 
 
@@ -74,9 +74,8 @@ function home() {
 
     <div>
         <a className="home-view">
-          <br/><br/><br/><br/><br/><br/>
+          <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
           <h1>VIEW</h1>
-          <br/><br/><br/><br/>
         </a>
     </div>
 
@@ -85,20 +84,24 @@ function home() {
           <div key={rowIndex} className="row">
             {[...Array(3)].map((_, colIndex) => {
               const imageIndex = rowIndex * 3 + colIndex;
-              const imageSrc = imgData.images[imageIndex];
+              const imageData = imgData.images[imageIndex];
+              const imageSrc = imageData.src;
+              const imageText = imageData.text;
               return (
                 <div key={colIndex} className="col">
                   <div className="image-container">
                     <div className="image-wrapper">
-                      <img className="img-responsive" src={imageSrc} alt={`Image ${imageIndex + 1}`} />
+                      <img className="img-responsive" src={imageSrc} alt={`Image ${imageIndex + 1}`}/>
                     </div>
                   </div>
+                  <div className="image-text">{imageText}</div>
                 </div>
               );
             })}
           </div>
         ))}
       </div>
+      <br/><br/><br/><br/>
     </div>
 
   );
