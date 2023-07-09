@@ -19,7 +19,7 @@ body {
 
 .site-title {
     font-weight:1000;
-    font-size:x-large;
+    font-size:30px;
     margin-left: 1rem;
     margin-top: 0.3rem;
 }
@@ -51,6 +51,10 @@ body {
     background-color: #ececec;
     padding-top: 1em;    
     white-space: nowrap;
+}
+
+.active {
+    font-size: 23px;
 }
 
 footer {
