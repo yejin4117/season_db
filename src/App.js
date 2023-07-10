@@ -1,7 +1,7 @@
 import Navbar from "./Navbar"
 import MAIN from "./pages/main"
 import HOME from "./pages/home"
-import VIEW from "./pages/View"
+import VIEW from "./pages/view"
 import LOGIN from "./pages/login"
 import SIGNUP from "./pages/signup"
 import Footer from "./Footer"
@@ -15,7 +15,7 @@ function App() {
     case "/home":
       Component = <HOME/>
       break
-    case "/View":
+    case "/view":
       Component = <VIEW/>
       break
     case "/login":

@@ -61,12 +61,12 @@ function View() {
     }
   };
 
+
   return (
     <div>
     <div>
-        <a className="home-view">
-          <br/><br/><br/><br/><br/><br/>
-          <br/><br/><br/><br/><br/><br/>
+        <a className="view-view">
+          <br/><br/><br/><br/>
           <br/><br/><br/><br/>
           <h1>VIEW</h1>
         </a>

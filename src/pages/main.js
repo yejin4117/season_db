@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import './pages.css'
 import Carousel from 'react-bootstrap/Carousel'
 
@@ -18,27 +18,56 @@ import image13 from './../images/y5.jpg'
 import image14 from './../images/y6.jpg'
 import image15 from './../images/y7.jpg'
 import image16 from './../images/y8.jpg'
+import image17 from './../images/j1.jpg'
+import image18 from './../images/j2.jpg'
+import image19 from './../images/j3.jpg'
+import image20 from './../images/j4.jpg'
+import image21 from './../images/j5.jpg'
+import image22 from './../images/j6.jpg'
 
 
 const imgData = {
   images: [
-    image5,
-    image6,
-    image7,
-    image8,
-    image9,
-    image10,
-    image11,
-    image12,
-    image13,
-    image14,
-    image15,
-    image16
-  ]
+    { src: image5, text: "<Abies koreana>" },
+    { src: image6, text: "<blue flower garden>" },
+    { src: image7, text: "<Sunflower>" },
+    { src: image8, text: "<Tiger>" },
+    { src: image9, text: "<ballerina>" },
+    { src: image10, text: "<Traveler>" },
+    { src: image11, text: "<Dancer>" },
+    { src: image12, text: "<Girl>" },
+    { src: image13, text: "<Doll>" },
+    { src: image14, text: "<Camera>" },
+    { src: image15, text: "<Coffee>" },
+    { src: image16, text: "<marriage>" },
+    { src: image17, text: "<Flower>" },
+    { src: image18, text: "<whirlwind>" },
+    { src: image19, text: "<Lightning>" },
+    { src: image20, text: "<Devil>" },
+    { src: image21, text: "<Strawberry>" },
+    { src: image22, text: "<Snow White>" }
+  ],
 };
 
 
-function home() {
+function Home() {
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageClick = (index) => {
+    setSelectedImage(index);
+  };
+
+  const handleClose = () => {
+    setSelectedImage(null);
+  };
+  
+  const handleOverlayClick = (event) => {
+    if (event.target.classList.contains('image-overlay')) {
+      setSelectedImage(null);
+    }
+  };
+
+
   return (
     <div>
       <Carousel controls={false} fade={true} pause={false}>
@@ -75,25 +104,34 @@ function home() {
     <div>
         <a className="home-view">
           <br/><br/><br/><br/><br/><br/>
-          <h1>VIEW</h1>
+          <br/><br/><br/><br/><br/><br/>
           <br/><br/><br/><br/>
+          <h1>VIEW</h1>
         </a>
     </div>
 
     <div className="image-grid">
-        {[...Array(3)].map((_, rowIndex) => (
+        {[...Array(6)].map((_, rowIndex) => (
           <div key={rowIndex} className="row">
             {[...Array(3)].map((_, colIndex) => {
               const imageIndex = rowIndex * 3 + colIndex;
-              const imageSrc = imgData.images[imageIndex];
+              const imageData = imgData.images[imageIndex];
+              const imageSrc = imageData.src;
+              const imageText = imageData.text;
               return (
                 <div key={colIndex} className="col">
-                  <div className="image-container">
+                  <div className={`image-container ${selectedImage === imageIndex ? 'selected' : ''}`}
+                    onClick={() => handleImageClick(imageIndex)}>
                     <div className="image-wrapper">
-                      <img className="img-responsive" src={imageSrc} alt={`Image ${imageIndex + 1}`} />
+                      <img className="img-responsive" src={imageSrc} alt={`Image ${imageIndex + 1}`}/>
                     </div>
-                    <div className="image-text">tree</div>
+                    {selectedImage === imageIndex && (
+                      <div className="image-overlay" onClick={handleClose}>
+                        <div className="overlay-content">안녕하세요</div>
+                    </div>
+                    )}
                   </div>
+                  <div className="image-text">{imageText}</div>
                 </div>
               );
             })}
@@ -106,4 +144,4 @@ function home() {
   );
 }
 
-export default home;
+export default Home;
