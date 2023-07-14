@@ -20,16 +20,20 @@ import image19 from './../images/j3.jpg'
 import image20 from './../images/j4.jpg'
 import image21 from './../images/j5.jpg'
 import image22 from './../images/j6.jpg'
+import image23 from './../images/s1.jpg'
+import image24 from './../images/s2.jpg'
+import image25 from './../images/s3.jpg'
+import image26 from './../images/s4.jpg'
 
 const imgData = {
   images: [
-    { src: image5, text: "<Abies koreana>" },
+    { src: image5, text: "<abies koreana>" },
     { src: image6, text: "<blue flower garden>" },
-    { src: image7, text: "<Sunflower>" },
-    { src: image8, text: "<Tiger>" },
+    { src: image7, text: "<sunflower>" },
+    { src: image8, text: "<tiger>" },
     { src: image9, text: "<ballerina>" },
-    { src: image10, text: "<Traveler>" },
-    { src: image11, text: "<Dancer>" },
+    { src: image10, text: "<traveler>" },
+    { src: image11, text: "<dancer>" },
     { src: image12, text: "<Girl>" },
     { src: image13, text: "<Doll>" },
     { src: image14, text: "<Camera>" },
@@ -40,7 +44,11 @@ const imgData = {
     { src: image19, text: "<Lightning>" },
     { src: image20, text: "<Devil>" },
     { src: image21, text: "<Strawberry>" },
-    { src: image22, text: "<Snow White>" }
+    { src: image22, text: "<Snow White>" },
+    { src: image23, text: "<Ghost_1>" },
+    { src: image24, text: "<Ghost_2>" },
+    { src: image25, text: "<Snow White>" },
+    { src: image26, text: "<Snow White>" }
   ],
 };
 
@@ -73,7 +81,7 @@ function View() {
     </div>
 
     <div className="image-grid">
-        {[...Array(6)].map((_, rowIndex) => (
+        {[...Array(7)].map((_, rowIndex) => (
           <div key={rowIndex} className="row">
             {[...Array(3)].map((_, colIndex) => {
               const imageIndex = rowIndex * 3 + colIndex;
