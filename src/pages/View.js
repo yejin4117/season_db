@@ -2,18 +2,20 @@ import React, {useEffect, useState} from 'react';
 import './pages.css';
 import Carousel from 'react-bootstrap/Carousel'
 
-import image5 from './../images/g1.jpg';
-import image6 from './../images/g2.jpg';
-import image7 from './../images/g3.jpg';
-import image8 from './../images/g4.jpg';
-import image9 from './../images/y1.jpg';
-import image10 from './../images/y2.jpg';
-import image11 from './../images/y3.jpg';
-import image12 from './../images/y4.jpg';
-import image13 from './../images/y5.jpg';
-import image14 from './../images/y6.jpg';
-import image15 from './../images/y7.jpg';
-import image16 from './../images/y8.jpg';
+import imageX from './../images/x.png';
+
+import image5 from './../images/g1.jpg'
+import image6 from './../images/g2.jpg'
+import image7 from './../images/g3.jpg'
+import image8 from './../images/g4.jpg'
+import image9 from './../images/y1.jpg'
+import image10 from './../images/y2.jpg'
+import image11 from './../images/y3.jpg'
+import image12 from './../images/y4.jpg'
+import image13 from './../images/y5.jpg'
+import image14 from './../images/y6.jpg'
+import image15 from './../images/y7.jpg'
+import image16 from './../images/y8.jpg'
 import image17 from './../images/j1.jpg'
 import image18 from './../images/j2.jpg'
 import image19 from './../images/j3.jpg'
@@ -55,18 +57,27 @@ const imgData = {
 function View() {
   const [selectedImage, setSelectedImage] = useState(null);
 
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      const imageGrid = document.querySelector('.image-grid');
+      if (imageGrid && !imageGrid.contains(event.target)) {
+        setSelectedImage(null);
+      }
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
   const handleImageClick = (index) => {
     setSelectedImage(index);
   };
 
   const handleClose = () => {
     setSelectedImage(null);
-  };
-  
-  const handleOverlayClick = (event) => {
-    if (event.target.classList.contains('image-overlay')) {
-      setSelectedImage(null);
-    }
   };
 
 
@@ -93,22 +104,25 @@ function View() {
                   <div className={`image-container ${selectedImage === imageIndex ? 'selected' : ''}`}
                     onClick={() => handleImageClick(imageIndex)}>
                     <div className="image-wrapper">
-                      <img className="img-responsive" src={imageSrc} alt={`Image ${imageIndex + 1}`}/>
+                      <img className="img-responsive" src={imageSrc} alt={`Image ${imageIndex + 1}`} />
+                      {selectedImage === imageIndex && (
+                        <div className="image-overlay">
+                          <img className="img-responsive" src={imageSrc} alt={`Selected Image`} />
+                          {/* <button className="close-button" onClick={handleClose}>
+                            <img className="close-image" src={imageX} alt="Close" style={{ width: '15px', height: '15px', position: 'absolute', top: '5px', right: '5px', zIndex: '2' }} />
+                          </button> */}
+                        </div>
+                      )}
                     </div>
-                    {selectedImage === imageIndex && (
-                      <div className="image-overlay" onClick={handleClose}>
-                        <div className="overlay-content">안녕하세요</div>
-                    </div>
-                    )}
+                    <div className="image-text">{imageText}</div>
                   </div>
-                  <div className="image-text">{imageText}</div>
                 </div>
               );
             })}
           </div>
         ))}
       </div>
-      <br/><br/><br/><br/>
+      <br /><br /><br /><br />
     </div>
 
   );
