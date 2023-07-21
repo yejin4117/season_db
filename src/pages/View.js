@@ -56,6 +56,8 @@ const imgData = {
 
 function View() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -80,9 +82,37 @@ function View() {
     setSelectedImage(null);
   };
 
+  const handleCommentChange = (event) => {
+    setNewComment(event.target.value);
+  };
+
+  const handleCommentSubmit = (event) => {
+    event.preventDefault();
+    if (newComment.trim() === '') return;
+    setComments([...comments, newComment]);
+    setNewComment('');
+  };
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
 
   return (
     <div>
+      {/* 검색 창 */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="검색..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+        <button>검색</button>
+      </div>
+
     <div>
         <a className="view-view">
           <br/><br/><br/><br/>
@@ -111,11 +141,28 @@ function View() {
                           {/* <button className="close-button" onClick={handleClose}>
                             <img className="close-image" src={imageX} alt="Close" style={{ width: '15px', height: '15px', position: 'absolute', top: '5px', right: '5px', zIndex: '2' }} />
                           </button> */}
+                          <div className="comment-section">
+                            <h3>댓글</h3>
+                            <form onSubmit={handleCommentSubmit}>
+                              <input
+                                type="text"
+                                placeholder="댓글 입력..."
+                                value={newComment}
+                                onChange={handleCommentChange}
+                              />
+                              <button type="submit">작성</button>
+                            </form>
+                            <ul className="comment-list">
+                              {comments.map((comment, index) => (
+                                <li key={index}>{comment}</li>
+                              ))}
+                            </ul>
+                          </div>
                         </div>
                       )}
                     </div>
-                    <div className="image-text">{imageText}</div>
                   </div>
+                  <div className="image-text">{imageText}</div>
                 </div>
               );
             })}
