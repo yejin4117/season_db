@@ -66,9 +66,9 @@ function View() {
         setSelectedImage(null);
       }
     };
-
+  
     document.addEventListener('click', handleOutsideClick);
-
+  
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
@@ -99,6 +99,27 @@ function View() {
     setSearchQuery(event.target.value);
   };
 
+  const renderComments = () => {
+    return (
+      <div className="comment-section">
+        <h3>댓글</h3>
+        <ul className="comment-list">
+          {comments.map((comment, index) => (
+            <li key={index}>{comment}</li>
+          ))}
+        </ul>
+        <form onSubmit={handleCommentSubmit}>
+          <input
+            type="text"
+            placeholder="댓글 입력..."
+            value={newComment}
+            onChange={handleCommentChange}
+          />
+          <button type="submit">작성</button>
+        </form>
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -138,26 +159,7 @@ function View() {
                       {selectedImage === imageIndex && (
                         <div className="image-overlay">
                           <img className="img-responsive" src={imageSrc} alt={`Selected Image`} />
-                          {/* <button className="close-button" onClick={handleClose}>
-                            <img className="close-image" src={imageX} alt="Close" style={{ width: '15px', height: '15px', position: 'absolute', top: '5px', right: '5px', zIndex: '2' }} />
-                          </button> */}
-                          <div className="comment-section">
-                            <h3>댓글</h3>
-                            <form onSubmit={handleCommentSubmit}>
-                              <input
-                                type="text"
-                                placeholder="댓글 입력..."
-                                value={newComment}
-                                onChange={handleCommentChange}
-                              />
-                              <button type="submit">작성</button>
-                            </form>
-                            <ul className="comment-list">
-                              {comments.map((comment, index) => (
-                                <li key={index}>{comment}</li>
-                              ))}
-                            </ul>
-                          </div>
+                          {renderComments()}
                         </div>
                       )}
                     </div>
