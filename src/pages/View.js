@@ -66,11 +66,19 @@ function View() {
         setSelectedImage(null);
       }
     };
+
+    const handleEscapeKey = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
   
     document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('keyup', handleEscapeKey);
   
     return () => {
       document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener('keyup', handleEscapeKey);
     };
   }, []);
 
