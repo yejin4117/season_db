@@ -125,6 +125,7 @@ function View() {
           />
           <button type="submit">작성</button>
         </form>
+        <br></br>
       </div>
     );
   };
