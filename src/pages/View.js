@@ -58,6 +58,7 @@ function View() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
+  const [imageData, setImageData] = useState([]);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
